@@ -1,0 +1,39 @@
+<?php
+
+/**
+ * @file
+ * HybridAuth IdqOAuth2 specific settings.
+*/
+
+
+function hybridauth_idqoauth2_init() {
+  drupal_add_css(drupal_get_path('module', 'hybridauth_idqoauth2') . '/idqoauth2.css');
+}
+ 
+/**
+ * Implements hook_ctools_plugin_type().
+ */
+function hybridauth_idqoauth2_ctools_plugin_type() {
+  return array(
+    'icon_pack' => array(
+      'cache' => TRUE,
+      // Themes can offer this plugin.
+      'load themes' => TRUE,
+    ),
+    'provider' => array(
+      'cache' => TRUE,
+    ),
+  );
+}
+
+/**
+ * Implements hook_ctools_plugin_directory().
+ */
+function hybridauth_idqoauth2_ctools_plugin_directory($module, $type) {
+  if ($module == 'hybridauth' && ($type == 'icon_pack' || $type == 'provider')) {
+    return 'plugins/' . $type;
+  }
+}
+ 
+
+

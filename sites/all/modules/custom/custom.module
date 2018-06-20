@@ -1,0 +1,23 @@
+<?php
+
+
+/**
+ * Implements hook_views_pre_build().
+ */
+function custom_views_pre_build(&$view) {
+
+ $account = user_load($GLOBALS['user']->uid);
+ foreach($account->field_topic[und] as $topic_id){
+  $topic_ids=$topic_id[target_id];
+ }
+
+ if ($view->name == 'workbench_moderation' && $view->current_display == 'needs_review_page') {
+  // Set the first contextual filter value.
+  $view->args[0] = $topic_ids;
+ }
+
+}
+
+
+
+?>

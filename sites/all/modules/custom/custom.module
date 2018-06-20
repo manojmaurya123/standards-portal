@@ -7,8 +7,10 @@
 function custom_views_pre_build(&$view) {
 
  $account = user_load($GLOBALS['user']->uid);
- foreach($account->field_topic[und] as $topic_id){
-  $topic_ids=$topic_id[target_id];
+ $topic_ids = '';
+ if(!empty($account->field_topic))
+ {  
+   $topic_ids=$account->field_topic['und'][0]['target_id'];  
  }
 
  if ($view->name == 'workbench_moderation' && $view->current_display == 'needs_review_page') {
